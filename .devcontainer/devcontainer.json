@@ -5,7 +5,6 @@
 	"image": "ghcr.io/mcanouil/quarto-codespaces:latest",
 
 	"remoteUser": "vscode",
-     "overrideCommand": false,
 
  	"customizations": {
 		"vscode": {
@@ -32,7 +31,6 @@
 				],
 				"r.useRenvLibPath": true,
 				"[r]": {
-					"editor.defaultFormatter": "Posit.air-vscode",
 					"editor.formatOnSave": true
 				}
 			}
