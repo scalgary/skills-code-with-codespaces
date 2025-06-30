@@ -2,22 +2,41 @@
      // Name this configuration
      "name": "Codespace for Skills!",
      // Use the base codespace image
-     "image": "mcr.microsoft.com/vscode/devcontainers/universal:latest",
+	"image": "ghcr.io/mcanouil/quarto-codespaces:latest",
 
-     "remoteUser": "codespace",
+	"remoteUser": "vscode",
      "overrideCommand": false,
 
-      "customizations": {
-        "vscode": {
-            "extensions": [
-                "GitHub.copilot"
-            ]
-        },
-        "codespaces": {
-            "openFiles": [
-                "codespace.md"
-            ]
-        }
-    } ,
+ 	"customizations": {
+		"vscode": {
+			"extensions": [
+				"quarto.quarto",
+				"mcanouil.quarto-wizard",
+				"REditorSupport.r",
+				"ms-python.python",
+				"julialang.language-julia",
+				"ms-python.black-formatter",
+				"ms-python.flake8",
+				"ms-python.vscode-pylance",
+				"ms-python.pylint",
+				"ms-python.isort",
+				"ms-toolsai.jupyter",
+				"Posit.air-vscode",
+				"GitHub.copilot"
+			],
+			"settings": {
+				"r.rterm.option": [
+					"--no-save",
+					"--no-restore-data",
+					"--quiet"
+				],
+				"r.useRenvLibPath": true,
+				"[r]": {
+					"editor.defaultFormatter": "Posit.air-vscode",
+					"editor.formatOnSave": true
+				}
+			}
+		}
+	} ,
     "postCreateCommand": "echo '# Writing code upon codespace creation!'  >> codespace.md"
    }
