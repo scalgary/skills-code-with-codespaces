@@ -35,3 +35,18 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Python (ajouté par setup.sh)
+.venv/
+__pycache__/
+*.pyc
+.env
+
+# R (ajouté par setup.sh)
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+renv/library/
+renv/python/
+renv/staging/
