@@ -1,0 +1,18 @@
+#!/bin/bash
+# Check if numpy is installed
+if uv run python -c "import numpy" 2>/dev/null; then
+    echo "✅ numpy is already installed"
+else
+    echo "❌ numpy not found, installing..."
+    uv add numpy
+    echo "✅ numpy installed successfully"
+fi
+
+uv run python -c "import pandas" 2>/dev/null || uv add pandas
+
+# Quand vous ajoutez un package, uv met à jour automatiquement
+uv add requests           # Met à jour uv.lock automatiquement
+uv add numpy --dev        # Met à jour uv.lock automatiquement
+
+# Synchroniser l'environnement
+uv sync  

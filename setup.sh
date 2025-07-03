@@ -1,25 +1,45 @@
 #!/bin/bash
-sudo apt-get update
-sudo apt-get install sl
-echo "export PATH=\$PATH:/usr/games" >> ~/.bashrc
 
-echo "🚀 Initialisation du Codespace..."
+# setup.sh - Script for setting up uv in GitHub Codespace
+# Usage: chmod +x setup.sh && ./setup.sh
 
 
+# setup.sh - Script simple pour uv
+set -e
 
-# Ajouter des alias utiles
-echo "
-# Alias pour uv
-alias uv-install='uv pip install'
-alias uv-compile='uv pip compile requirements.in'
-alias uv-sync='uv pip sync requirements.txt'
-alias uv-update='uv pip compile requirements.in && uv pip sync requirements.txt'
-alias activate='source venv/bin/activate'
+echo "🚀 Configuration uv..."
 
-# Auto-activation de l'environnement virtuel
-if [ -f venv/bin/activate ]; then
-    source venv/bin/activate
-fi
-" >> ~/.bashrc
+# Installer uv
+pip install uv
 
-echo "✅ Codespace configuré avec succès!"
+# Créer pyproject.toml simple
+cat > pyproject.toml << EOF
+[project]
+name = "my-project"
+version = "0.1.0"
+requires-python = ">=3.9"
+dependencies = []
+
+[tool.uv]
+dev-dependencies = [
+    "pytest",
+    "black",
+]
+EOF
+
+# Créer le lock file
+uv lock
+
+# Installer les dépendances
+uv sync
+
+
+
+echo "✅ Configuration terminée!"
+echo ""
+echo "Commandes disponibles:"
+echo "• uv add <package>     - Ajouter une dépendance"
+echo "• uv run <command>     - Exécuter une commande"
+echo "• uv sync              - Synchroniser les dépendances"
+
+source 
